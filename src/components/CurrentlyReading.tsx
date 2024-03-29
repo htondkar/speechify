@@ -1,3 +1,9 @@
+type Props = {
+  currentWordRange: [number, number];
+  currentSentenceIndex: number;
+  sentences: string[];
+};
+
 /**
  * Implement the CurrentlyReading component here
  * This component should have the following,
@@ -9,12 +15,34 @@
  */
 export const CurrentlyReading = ({
   currentWordRange,
-  currentSentenceIdx,
+  currentSentenceIndex,
   sentences,
-}: {
-  currentWordRange: [number, number];
-  currentSentenceIdx: number;
-  sentences: string[];
-}) => {
-  return <div data-testid="currently-reading"></div>;
+}: Props) => {
+  return <div data-testid="currently-reading">
+    {sentences.map((sentence, index) => (
+      <p key={`p-${index}`} data-testid={index === currentSentenceIndex ? "current-sentence" : ""}>
+
+        {sentence.split(" ").map((word, wordIndex) => {
+          const wordIsBetweenCurrentWordRange = wordIndex >= currentWordRange[0] && wordIndex < currentWordRange[1];
+          const wordIsInCurrentSentence = index === currentSentenceIndex;
+          const wordIsTheCurrentWord = wordIsInCurrentSentence && wordIsBetweenCurrentWordRange
+
+          return (
+            <>
+              <Word key={`w-${wordIndex}`} highlighted={wordIsTheCurrentWord} content={word} />
+              {" "}
+            </>
+          )
+        })}
+      </p>
+    ))}
+  </div>;
 };
+
+
+function Word({ content, highlighted }: { highlighted: boolean, content: string }): JSX.Element {
+  return (<span data-testid={highlighted ? "current-word" : ""}>
+    {content}
+  </span>)
+}
+

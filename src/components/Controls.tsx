@@ -1,4 +1,12 @@
+import React from 'react';
 import { PlayingState } from '../lib/speech';
+
+type Props = {
+  play: () => void;
+  pause: () => void;
+  loadNewContent: () => void;
+  state: PlayingState;
+};
 
 /*
  * Implement a component that provides basic UI options such as playing, pausing and loading new content
@@ -11,11 +19,38 @@ export const Controls = ({
   play,
   pause,
   loadNewContent,
-}: {
-  play: () => void;
-  pause: () => void;
-  loadNewContent: () => void;
-  state: PlayingState;
-}) => {
-  return <div></div>;
+  state,
+}: Props) => {
+
+  const handlePlay: React.MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.preventDefault();
+
+    if (state !== 'playing' && state !== 'ended') {
+      play();
+    }
+  }
+
+  const handlePause: React.MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.preventDefault();
+
+    if (state === 'playing') {
+      pause();
+    }
+  }
+
+  const handleLoadNewContent: React.MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.preventDefault();
+
+    if (state === 'playing') {
+      pause();
+    }
+
+    loadNewContent();
+  }
+
+  return <div>
+    <button type='button' onClick={handlePlay}>Play</button>
+    <button type='button' onClick={handlePause} >Pause</button>
+    <button type='button' onClick={handleLoadNewContent}>Load new content</button>
+  </div>;
 };

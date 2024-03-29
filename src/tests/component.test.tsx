@@ -31,7 +31,7 @@ describe("Currently Reading Component", () => {
     render(
       <CurrentlyReading
         currentWordRange={wordRange}
-        currentSentenceIdx={0}
+        currentSentenceIndex={0}
         sentences={sentences}
       />
     );
@@ -50,7 +50,7 @@ describe("Currently Reading Component", () => {
     const { rerender } = render(
       <CurrentlyReading
         currentWordRange={wordRange}
-        currentSentenceIdx={0}
+        currentSentenceIndex={0}
         sentences={sentences}
       />
     );
@@ -63,7 +63,7 @@ describe("Currently Reading Component", () => {
     rerender(
       <CurrentlyReading
         currentWordRange={wordRange}
-        currentSentenceIdx={1}
+        currentSentenceIndex={1}
         sentences={sentences}
       />
     );
@@ -78,7 +78,7 @@ describe("Currently Reading Component", () => {
     const { rerender } = render(
       <CurrentlyReading
         currentWordRange={wordRange}
-        currentSentenceIdx={0}
+        currentSentenceIndex={0}
         sentences={sentences}
       />
     );
@@ -89,7 +89,7 @@ describe("Currently Reading Component", () => {
     rerender(
       <CurrentlyReading
         currentWordRange={[5, 7]}
-        currentSentenceIdx={1}
+        currentSentenceIndex={1}
         sentences={sentences}
       />
     );

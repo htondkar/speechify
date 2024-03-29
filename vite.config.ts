@@ -1,8 +1,7 @@
 /// <reference types="vitest" />
-import { defineConfig } from 'vite';
-import GithubActionsReporter from 'vitest-github-actions-reporter';
+import { defineConfig } from "vite"
 
-import react from '@vitejs/plugin-react';
+import react from "@vitejs/plugin-react"
 
 export default defineConfig({
   server: {
@@ -15,13 +14,7 @@ export default defineConfig({
       junit: "test-results.xml",
     },
     reporters: process.env.GITHUB_ACTIONS
-      ? [
-          "junit",
-          new GithubActionsReporter({
-            hideStackTrace: true,
-            trimRepositoryPrefix: true,
-          }),
-        ]
+      ? ["junit", "github-actions"]
       : "default",
   },
-});
+})

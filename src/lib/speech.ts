@@ -66,6 +66,7 @@ const createSpeechEngine = (options: SpeechEngineOptions) => {
     options.onStateUpdate("paused");
     window.speechSynthesis.pause();
   };
+  
   const cancel = () => {
     options.onStateUpdate("initialized");
     window.speechSynthesis.cancel();
